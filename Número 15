@@ -1,0 +1,21 @@
+/* 15_Escreva uma função recursiva que calcule a soma dos dígitos de um número inteiro. 
+Por exemplo, se a entrada for 123, a saída deverá ser 1+2+3 = 6.*/
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+#include<locale.h>
+int soma_Digitos(int n){
+	if(n < 10) return n % 10;
+	return soma_Digitos(n / 10) + n % 10;
+}
+int main (void ){
+	setlocale(LC_ALL,"");
+	int n,s;
+	printf("\n-----Soma dos digitos de um número-----\n\n");
+	printf("Insira os números:\t");
+	scanf("%i",&n);
+	s=soma_Digitos(n);
+	printf("\nA soma dos dígitos do número acima é: %i \t\n\n",s);
+	system("pause");
+	return 0;		
+}
