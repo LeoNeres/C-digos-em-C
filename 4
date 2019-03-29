@@ -1,0 +1,47 @@
+/* 4_Dado um vetor com 11 números inteiros,crie uma função recursiva que iverterá a posição 
+dos seus elementos*/
+#include<stdlib.h>
+#include<stdio.h>
+#include<math.h>
+#include<locale.h>
+
+struct ficha{
+int num;
+struct ficha *pr;
+};
+typedef struct ficha LST;
+LST* cria(void){
+return NULL;
+}
+LST*insere (LST*l,int v){
+LST*aux;
+aux=(LST*)malloc(sizeof(LST));
+aux->num=v;
+aux-> pr = l;
+return aux;
+}
+
+void imprime(LST* l){
+LST* po = l;
+while(po != NULL){
+printf("%d\n",po->num);
+po = po->pr;
+}
+}
+
+int main()
+{
+   setlocale(LC_ALL,"Portuguese");
+   LST* lista;
+   int x,y;
+   lista = cria();
+   for(x=0;x<11;x++)
+   {
+    printf("Digite %d num = ",x+1);
+    scanf("%d",&y);
+    lista = insere(lista,y);
+   }
+   imprime(lista);
+   
+   system("pause");
+}
