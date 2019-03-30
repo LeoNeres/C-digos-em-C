@@ -12,7 +12,7 @@ int N(int n) {
 	printf("%d ", n);
 }
 
-int retN(int n) {
+int CresN(int n) {
 	if(n < 0) {
 		return N(n * -1);
 	}
@@ -26,7 +26,7 @@ int main (void ){
 	printf("Digite um número:\t");
 	scanf("%i",&n);
 	printf("\nA ordem crescente dos números é:\t",n);
-	retN(n);
+	CresN(n);
 	printf("\n\n");
   	system("pause");
   	return 0;
