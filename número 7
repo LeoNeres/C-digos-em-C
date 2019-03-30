@@ -1,0 +1,29 @@
+/* 7_Faça uma função recursiva que permita inverter um número inteiro N.
+ Ex: 123 - 321*/
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+#include<locale.h>
+int inversao(int num) { 
+   int a; 
+   if (num == 0) 
+      return num; 
+   else { 
+      a = num % 10; 
+      printf("%d", a); 
+      return inversao(num/10); 
+   } 
+} 
+
+int main() { 
+   int n;
+   setlocale (LC_ALL,""); 
+   printf("\n-----Inversão de Números-----\n\n");
+   printf("Informe um número: "); 
+   scanf("%d", &n);
+   printf("\n"); 
+   printf("O número invertido é: "); 
+   inversao(n); 
+   printf("\n"); 
+   return 0; 
+}
