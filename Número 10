@@ -1,0 +1,33 @@
+/* 10_Faça uma função recursiva que receba um número inteiro positivo N 
+e imprima todos os números naturais de 0 até N em ordem Crescente.*/
+#include<stdio.h>
+#include<stdlib.h>
+#include<math.h>
+#include<locale.h>
+int N(int n) {
+	if(n == -1) {
+		return 0;
+	}
+	1 + N(n - 1);
+	printf("%d ", n);
+}
+
+int retN(int n) {
+	if(n < 0) {
+		return N(n * -1);
+	}
+	return N(n);
+}
+
+int main (void ){
+	setlocale(LC_ALL,"");
+	int n;
+	printf("\n-----Ordem Crescente de números naturais-----\n\n");
+	printf("Digite um número:\t");
+	scanf("%i",&n);
+	printf("\nA ordem crescente dos números é:\t",n);
+	retN(n);
+	printf("\n\n");
+  	system("pause");
+  	return 0;
+}
