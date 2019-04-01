@@ -1,0 +1,25 @@
+/*A multiplicação de dois números inteiros pode ser feita através de somas sucessivas. 
+Proponha um algoritmo recursivo Multip_Rec(n1,n2) que calcule a multiplicação de dois inteiros.*/
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+#include<math.h>
+#include<locale.h>
+
+int mul(int n1, int n2){
+    if(n2 == 1)
+        return n1;
+    return n1 + mul(n1, n2-1);
+}
+
+int main(){
+    setlocale(LC_ALL,"");
+    int n1, n2, result;
+    printf("Digite o valor de n1:\t ");
+    scanf("%d", &n1);
+    printf("Digite o valor de n2:\t ");
+    scanf("%d", &n2);
+    result = mul(n1,n2);
+    printf("o resultado é:\t\t%d\n", result);
+    return 0;
+}
