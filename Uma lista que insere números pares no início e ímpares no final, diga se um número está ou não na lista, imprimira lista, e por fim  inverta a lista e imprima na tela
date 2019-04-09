@@ -1,0 +1,151 @@
+/* Uma lista que insere números pares no início e ímpares no final,
+diga se um número está ou não na lista, imprimira lista, e por fim 
+inverta a lista e imprima na tela*/
+#include <stdlib.h>
+#include <stdio.h>
+#include <math.h>
+#include <locale.h>
+
+struct Lista{
+	int num;
+	struct Lista *next;
+};
+
+typedef struct Lista lst;
+
+lst *cria(void){
+	return NULL;
+}
+
+lst *func1(lst *l, int x)
+{
+	lst *aux;
+	aux = (lst *)malloc(sizeof(lst));
+	aux->num = x;
+	aux->next = l;
+	return aux;
+}
+
+lst *func2(lst *l, int x)
+{
+	lst *temp;
+	temp = l;
+	lst *aux;
+	aux = (lst*)malloc(sizeof(lst));
+	aux->num = x;
+	aux->next = NULL;
+	if(temp == NULL)
+	{
+		return aux;
+	}
+	else
+	{
+		while(temp->next != NULL)
+		{
+			temp = temp->next;
+		}
+		temp->next = aux;
+		return l;
+	}
+}
+
+int func3(lst *l, int n)
+{
+	lst *temp;
+	temp = l;
+	if(temp->next==NULL && temp->num != n)
+	return 0;
+	if(temp->next==NULL && temp->num == n)
+	return 1;
+	if(temp->num == n)
+	return 1;
+	else
+	{
+		temp = temp->next;
+		func3(temp,n);
+	}
+}
+
+lst *func4(lst *l)
+{
+	lst *temp;
+	temp = l;
+	if(temp->next == NULL)
+	{
+		printf("[%d]",temp->num);
+		return l;
+	}
+	
+	else
+	{
+		printf("[%d]",temp->num);
+		temp = temp->next;
+		func4(temp);
+	}
+}
+
+lst *func5(lst *k, lst *l)
+{
+	lst *aux;
+	aux = (lst *)malloc(sizeof(lst));
+	lst *temp;
+	temp = l;
+	if(temp->next != NULL)
+	{
+		aux->num = temp->num;
+		aux->next = k;
+		return func5(aux,temp->next);
+	}
+	else
+	{
+		aux->num = temp->num;
+		aux->next = k;
+		return aux;
+	}
+}
+
+main()
+{
+	setlocale(LC_ALL,"Portuguese");
+	int vet[10] = {5,9,4,7,8,2,3,16,11,0};
+	int i;
+	printf("Vetor a ser inserido na Lista:");
+	for(i=0;i<10;i++)
+	{
+		printf("[%d]",vet[i]);
+	}
+	printf("\nNúmeros pares no início e números ímpares no final.\n\n");
+	lst *lista;
+	lista = cria();
+	for(i=0;i<10;i++)
+	{
+		if(vet[i]%2 == 0)
+		{
+			lista = func1(lista, vet[i]);
+		}
+		else
+		{
+			lista = func2(lista, vet[i]);
+		}
+	}
+	int n, r;
+	printf("Digite um número para pesquisar na lista: ");
+	scanf("%d",&n);
+	r = func3(lista,n);
+	if(r==1)
+	{
+		printf("\nO número %d está na lista!\n\n",n);
+	}
+	else
+	{
+		printf("\nO número %d não está na lista!\n\n",n);
+	}
+	printf("Imprimir Listas:\n");
+	printf("Lista Normal: ---------- ");
+	func4(lista);
+	lst *k;
+	k = cria();
+	printf("\n\nLista Invertida: ------- ");
+	k = func5(k,lista);
+	func4(k);
+}
