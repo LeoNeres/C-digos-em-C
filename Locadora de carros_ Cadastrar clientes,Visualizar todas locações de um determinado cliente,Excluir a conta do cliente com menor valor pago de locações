@@ -1,0 +1,166 @@
+#include<stdlib.h>
+#include<stdio.h>
+#include<math.h>
+#include<conio.h>
+#include<locale.h>
+#include<string.h>
+
+void f1();
+void f2();
+void f3();
+#define tamanho 9
+
+struct cliente
+{
+	int num;
+	char nome[100];
+	char carro[100];
+	float valor;
+}cl[tamanho];
+
+int qtdclientes=0;
+main ()
+{
+	int op;
+	setlocale(LC_ALL,"portuguese");
+	printf("------locadora de carros------\n");
+	printf("\n------MENU------\n");
+	printf("\n1 - Cadastrar o clientes");
+	printf("\n2 - Visualizar todas locações de um determinado cliente");
+	printf("\n3 - Excluir a conta do cliente com menor valor pago de locações");
+	printf("\n4 - Sair\n\n\n");
+	scanf("%i",&op);
+	system("cls");
+		
+	switch (op)
+	{
+		case 1:
+			f1();
+			break;
+			
+		case 2:
+			f2();
+				break;
+				
+		case 3:
+			f3();
+			break;
+			
+		case 4:
+			break;		
+		
+	}
+	
+}
+
+void f1()
+{
+	
+	int i, i2;
+	printf("informe a quantidade de clintes que deseja cadastrar: ");
+	scanf("%i",&qtdclientes);
+	while (qtdclientes>10)
+	{
+		printf("o número maximo de clientes permito é de 10 clientes\n");
+		printf("insira outro valor: ");
+		scanf("%s",&qtdclientes);
+		
+	}
+	for (i=0;i<qtdclientes;i++)
+	{
+		
+		printf("\nDigite o número do %i cliente: ",i+1);
+		scanf("%i",&cl[i].num);
+		printf("\nDigite o nome do %i cliente: ",i+1);
+		scanf("%s",&cl[i].nome);
+		printf("\nDigite o modelo do carro locado pelo %i cliente: ",i+1);
+		scanf("%s",&cl[i].carro);
+		for(i2=0;i2<=i-1;i2++)
+		{
+			while (strcmp(cl[i].carro,cl[i2].carro)==0)
+			{
+				printf("Erro, este carro já está locado\n");
+				printf("digite outro modelo de carro: ");
+				scanf("%s",&cl[i].carro);
+				
+			}
+		}
+		printf("\nDigite o valor pago pelo carro do %i cliente: ",i+1);
+		scanf("%f",&cl[i].valor);
+		system("cls");
+		
+	}
+	
+	printf("------locadora de carros------\n");
+	printf("------Cadastrar o clientes-----\n");
+	printf("------Cadastro finalizado------\n");
+	printf("pressione ENTER para voltar ao menu\n");
+	getch();
+	system("cls");
+	main();	
+}
+void f2()
+{
+	system("cls");
+	char nome[100];
+	int i;
+	printf("------locadora de carros------\n");
+	printf("------Visualizar todas locações de um determinado cliente------\n");
+	printf("digite o nome do cliente: ");
+	scanf("%s",&nome);
+	system("cls");
+	
+	for(i=0;i<=tamanho;i++)
+	{
+		if (strcmp(nome,cl[i].nome)==0)
+		{
+			printf("------locadora de carros------\n");
+			printf("------Visualizar todas locações de um determinado cliente------\n");
+			printf("\nNúmero: %i\n",cl[i].num);
+			printf("\nNome: %s\n",cl[i].nome);
+			printf("\nLocações: %s\n",cl[i].carro);
+			printf("\nValor pago: R$ %.2f\n",cl[i].valor);
+		}
+	}
+	printf("pressione ENTER para voltar ao menu\n");
+	getch();
+	system("cls");
+	main();
+}
+
+void f3()
+{
+	system("cls");
+	float menor=9999999;
+	int i;
+	for(i=0;i<qtdclientes;i++)
+	{
+		if(cl[i].valor<menor)
+		{
+			menor = cl[i].valor;
+			
+		}
+	}
+	
+	    for(i=0;i<qtdclientes;i++)
+	{
+		if (menor == cl[i].valor)
+		{
+		    printf("------locadora de carros------\n");
+	        printf("------Excluir a conta do cliente com menor valor pago de locações------\n");
+	        printf("\nNúmero: %i\n",cl[i].num);
+            printf("\nNome: %s\n",cl[i].nome);
+	        printf("\nLocações: %s\n",cl[i].carro);
+	        printf("\nValor pago: R$ %.2f\n",cl[i].valor);
+			cl[i].num = NULL;
+			*cl[i].nome = NULL;
+			*cl[i].carro = NULL;
+			cl[i].valor = NULL;
+		}
+		
+	}
+	printf("pressione ENTER para voltar ao menu\n");
+	getch();
+	system("cls");
+	main();
+}
